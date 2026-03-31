@@ -1,98 +1,99 @@
 import { motion } from 'motion/react';
-import { TrendingUp, Crosshair, Hexagon, Users, Lightbulb, Scroll, ArrowUpCircle, Smartphone } from 'lucide-react';
+import { Layers, Hexagon, Wand2, TrendingUp, Compass, Swords } from 'lucide-react';
 
 const features = [
-  { 
-    icon: <Users className="w-8 h-8" />, 
-    title: "Classes Únicas", 
-    desc: "Guerreiros, Arqueiros e Magos com árvores de habilidades distintas e progressão profunda.",
-    colSpan: "md:col-span-2",
-    bg: "bg-gradient-to-br from-void to-battle-dark/40"
+  {
+    title: "Evolução por Tiers",
+    description: "Cada classe possui múltiplos estágios de maestria e caminhos de evolução exclusivos.",
+    icon: <Layers className="w-8 h-8" />,
   },
-  { 
-    icon: <Hexagon className="w-8 h-8" />, 
-    title: "Combate em Hexágonos", 
-    desc: "Posicionamento tático é a chave para a vitória.",
-    colSpan: "md:col-span-1",
-    bg: "bg-gradient-to-br from-void to-arcane/20"
+  {
+    title: "Combate em Hexágonos",
+    description: "Sistema tático de alta profundidade técnica em campos de batalha hexaminais.",
+    icon: <Hexagon className="w-8 h-8" />,
   },
-  { 
-    icon: <TrendingUp className="w-8 h-8" />, 
-    title: "Evolução por Tiers", 
-    desc: "Ascenda de um mero mortal a um lorde lendário.",
-    colSpan: "md:col-span-1",
-    bg: "bg-gradient-to-br from-void to-gold-dark/20"
+  {
+    title: "Artes de Guerra",
+    description: "Habilidades únicas forjadas no grimório arcano e aperfeiçoadas em combate.",
+    icon: <Wand2 className="w-8 h-8" />,
   },
-  { 
-    icon: <Lightbulb className="w-8 h-8" />, 
-    title: "Artes Marciais e Magia", 
-    desc: "Combine ataques físicos e feitiços arcanos devastadores.",
-    colSpan: "md:col-span-2",
-    bg: "bg-gradient-to-br from-void to-battle-red/20"
+  {
+    title: "Progressão de Linhagem",
+    description: "Sistema de herança que garante o legado de seu herói através das eras.",
+    icon: <TrendingUp className="w-8 h-8" />,
   },
-  { 
-    icon: <Scroll className="w-8 h-8" />, 
-    title: "Missões Épicas", 
-    desc: "Explore um mundo rico em lore e recompensas.",
-    colSpan: "md:col-span-1",
-    bg: "bg-gradient-to-br from-void to-wine/40"
+  {
+    title: "Mural de Expedições",
+    description: "Um mundo vivo com missões que mudam conforme o destino do reino.",
+    icon: <Compass className="w-8 h-8" />,
   },
-  { 
-    icon: <Smartphone className="w-8 h-8" />, 
-    title: "RPG Mobile Premium", 
-    desc: "Gráficos de ponta e jogabilidade fluida no seu bolso.",
-    colSpan: "md:col-span-1",
-    bg: "bg-gradient-to-br from-void to-silver/10"
+  {
+    title: "Poder de Guilda",
+    description: "Forme alianças nobres e conquiste territórios em batalhas massivas.",
+    icon: <Swords className="w-8 h-8" />,
   },
 ];
 
 export default function Features() {
   return (
-    <section id="features" className="py-32 relative bg-void overflow-hidden">
-      {/* Immersive Background */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[url('https://picsum.photos/seed/darkmagic/1920/1080')] bg-cover bg-center opacity-10 mix-blend-luminosity" />
-        <div className="absolute inset-0 bg-gradient-to-t from-void via-void/80 to-void" />
-      </div>
-      
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-20">
+    <section id="features" className="py-32 relative bg-leather/10 overflow-hidden">
+      {/* Decorative Wood Board Background */}
+      <div className="absolute inset-x-0 top-0 bottom-0 z-0 texture-wood opacity-10" />
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="text-center mb-24">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="flex items-center justify-center gap-4 mb-6"
           >
-            <div className="w-12 h-px bg-gold" />
-            <span className="text-gold font-cinzel tracking-widest uppercase text-sm">Diferenciais</span>
-            <div className="w-12 h-px bg-gold" />
+            <h2 className="title-ornate text-4xl md:text-5xl text-gold uppercase tracking-[0.2em] font-black">
+              Pilares do Destino
+            </h2>
+            <p className="font-serif italic text-2xl text-parchment/60 max-w-2xl mx-auto mt-4">
+              "Os alicerces de un império que jamais se curvará."
+            </p>
           </motion.div>
-          <h2 className="text-4xl md:text-6xl font-cinzel text-white mb-6 text-shadow-epic">
-            Forje Seu <span className="text-arcane-light">Destino</span>
-          </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-            Sistemas profundos e mecânicas imersivas projetadas para os verdadeiros fãs de RPG.
-          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {features.map((feature, idx) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          {features.map((feature, index) => (
             <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              key={feature.title}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className={`flex flex-col p-8 rounded-xl border border-white/10 hover:border-gold/30 transition-all group ${feature.colSpan} ${feature.bg} relative overflow-hidden`}
+              transition={{ delay: index * 0.1 }}
+              className="group"
             >
-              {/* Hover Glow Effect */}
-              <div className="absolute -inset-full bg-gradient-to-r from-transparent via-white/5 to-transparent group-hover:animate-[shimmer_1.5s_infinite] -skew-x-12" />
-              
-              <div className="w-14 h-14 rounded-full bg-black/50 border border-white/10 text-gold flex items-center justify-center mb-6 group-hover:scale-110 group-hover:text-white group-hover:border-gold/50 transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)] relative z-10">
-                {feature.icon}
+              <div className="relative p-10 parchment-container border-medieval h-full flex flex-col items-center text-center hover-shake transition-all duration-300">
+                {/* Decorative Plate Background */}
+                <div className="absolute inset-4 border border-gold-dark/10 pointer-events-none" />
+
+                {/* Shield Icon Container */}
+                <div className="mb-8 relative">
+                   <div className="seal-gold relative z-10 group-hover:scale-110 transition-transform duration-500">
+                      <div className="text-leather">{feature.icon}</div>
+                   </div>
+                   {/* Shadow/Glow effect beneath shield */}
+                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-gold blur-2xl opacity-20 group-hover:opacity-40 transition-opacity" />
+                </div>
+
+                <h3 className="font-cinzel text-2xl font-black text-ink uppercase tracking-tight mb-4 group-hover:text-gold-dark transition-colors font-cinzel">
+                  {feature.title}
+                </h3>
+                
+                <p className="text-ink/80 text-lg font-serif leading-relaxed italic">
+                  "{feature.description}"
+                </p>
+
+                {/* Decorative divider at bottom of each feature */}
+                <div className="mt-8 flex items-center justify-center gap-2">
+                   <div className="w-8 h-px bg-gold-dark/30" />
+                   <div className="w-1.5 h-1.5 rotate-45 bg-gold-dark/40" />
+                   <div className="w-8 h-px bg-gold-dark/30" />
+                </div>
               </div>
-              <h4 className="text-xl font-cinzel font-bold text-white mb-3 relative z-10">{feature.title}</h4>
-              <p className="text-gray-400 text-sm leading-relaxed relative z-10">{feature.desc}</p>
             </motion.div>
           ))}
         </div>

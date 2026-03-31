@@ -1,47 +1,52 @@
 import { motion } from 'motion/react';
-import { Sword, ShieldAlert } from 'lucide-react';
+import { Download, Swords, ScrollText } from 'lucide-react';
 
 export default function Cta() {
   return (
-    <section className="relative py-40 overflow-hidden flex items-center justify-center">
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[url('https://picsum.photos/seed/epicbattle/1920/1080')] bg-cover bg-center opacity-30 mix-blend-luminosity" />
-        <div className="absolute inset-0 bg-gradient-to-t from-void via-void/60 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-b from-void via-transparent to-transparent" />
-        
-        {/* Glowing Portal Effect */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-battle-red/20 rounded-full blur-[150px] animate-pulse" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gold/10 rounded-full blur-[100px]" />
-      </div>
+    <section className="py-24 relative overflow-hidden bg-leather/20">
+      {/* Background Texture: Wood & Dust */}
+      <div className="absolute inset-0 z-0 texture-wood opacity-10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-leather/30 via-transparent to-leather/30" />
 
-      <div className="container mx-auto px-4 relative z-10 text-center">
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="max-w-3xl mx-auto"
+          className="parchment-container max-w-4xl mx-auto p-12 md:p-20 border-medieval bg-gold shadow-[0_30px_60px_rgba(0,0,0,0.7)] text-center relative overflow-hidden"
         >
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <ShieldAlert className="w-8 h-8 text-battle-red" />
+          {/* Decorative Corner Ornaments */}
+          <div className="absolute top-0 right-0 p-4">
+             <div className="w-16 h-16 border-t-2 border-r-2 border-gold-dark/40" />
           </div>
-          <h2 className="text-5xl md:text-7xl font-cinzel font-bold text-white mb-6 text-shadow-epic">
-            O Reino <span className="text-battle-red">Aguarda</span>
+
+          <div className="flex justify-center mb-8">
+             <div className="seal-gold-large relative flex items-center justify-center bg-leather">
+                <Swords className="w-10 h-10 text-gold-bright" />
+             </div>
+          </div>
+
+          <h2 className="font-cinzel text-4xl md:text-6xl font-black text-leather uppercase tracking-widest mb-6">
+             Atenda ao Chamado!
           </h2>
-          <p className="text-xl text-gray-300 mb-12 font-inter drop-shadow-md">
-            Sua lenda começa agora. Reúna sua coragem, escolha sua classe e prepare-se para a batalha final contra as forças do abismo.
-          </p>
           
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <button className="group relative w-full sm:w-auto px-12 py-5 bg-gradient-to-r from-battle-dark to-battle-red hover:from-battle-red hover:to-red-600 text-white font-cinzel font-bold text-xl rounded-sm border border-red-500/50 shadow-[0_0_30px_rgba(153,27,27,0.6)] transition-all hover:scale-105 flex items-center justify-center gap-3 overflow-hidden">
-              <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
-              <Sword className="w-6 h-6 relative z-10 group-hover:rotate-12 transition-transform" />
-              <span className="relative z-10 tracking-wider">Pré-Registro Grátis</span>
-            </button>
-            
-            <button className="w-full sm:w-auto px-8 py-5 bg-transparent hover:bg-white/5 text-gray-300 hover:text-white font-cinzel font-bold text-lg rounded-sm border border-white/20 hover:border-white/50 transition-all flex items-center justify-center gap-2">
-              Ver Trailer
-            </button>
+          <p className="font-serif italic text-2xl text-leather/80 mb-12 max-w-2xl mx-auto">
+             "O destino do reino de vidro está em suas mãos. Reivindique sua herança agora ou deixe seu nome ser esquecido pelas areias do tempo."
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+             <button className="btn-medieval !bg-leather !text-gold !border-gold flex items-center gap-3 px-10 py-5 text-xl">
+                <Download className="w-6 h-6" />
+                Baixar Grimório
+             </button>
+             <button className="bg-transparent border-2 border-leather text-leather hover:bg-leather hover:text-gold font-cinzel font-bold px-10 py-5 transition-all text-xl uppercase tracking-widest flex items-center gap-3">
+                <ScrollText className="w-6 h-6" />
+                Regras da Coroa
+             </button>
           </div>
+
+          {/* Bottom Wax Seal Accent */}
+          <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-wine/10 rounded-full blur-3xl" />
         </motion.div>
       </div>
     </section>

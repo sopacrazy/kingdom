@@ -1,103 +1,136 @@
 import { motion } from 'motion/react';
-import { Zap, Droplets, Hexagon, Skull, ShieldAlert, Wind } from 'lucide-react';
+import { Sparkles, FlameIcon, ShieldAlert } from 'lucide-react';
 
 const skills = [
-  { class: "Guerreiro", name: "Golpe Brutal", desc: "Executa um ataque com 100% do dano físico e stuna o inimigo por 1 turno.", cd: 4, mana: 3, dist: 1, type: "physical", tags: ["Burst", "Stun"] },
-  { class: "Arqueiro", name: "Rajada Precisa", desc: "Dispara uma flecha causando 200% com base na sua Destreza.", cd: 3, mana: 3, dist: 10, type: "ranged", tags: ["Burst", "Precisão"] },
-  { class: "Mago", name: "Chuva Etérea", desc: "Causa 100% de dano mágico e aplica veneno (Dano mágico) por 3 turnos, causando 50% do dano mágico por turno.", cd: 4, mana: 5, dist: 3, type: "magic", tags: ["AoE", "Veneno"] },
-  { class: "Gladiador", name: "Corte Rasgante", desc: "Causa 150% do dano físico e aplica veneno (Dano físico) por 3 turnos, causando 30% do dano físico por turno.", cd: 5, mana: 5, dist: 1, type: "physical", tags: ["Sangramento", "Sustentado"] },
-  { class: "Atirador Sombrio", name: "Flecha Enredante", desc: "Ataca com 150% do dano baseado na sua destreza e prende o inimigo por 1 turnos (sem mover).", cd: 5, mana: 8, dist: 10, type: "ranged", tags: ["Controle", "Debuff"] },
-  { class: "Feiticeiro", name: "Orbe Arcano", desc: "Lança uma esfera de energia que causa 200% de dano mágico.", cd: 6, mana: 12, dist: 10, type: "magic", tags: ["Burst", "Mágico"] },
-  { class: "Senhor da Guerra", name: "Investida Imparável", desc: "Avança até o oponente, causando 150% do dano físico.", cd: 6, mana: 8, dist: 10, type: "physical", tags: ["Mobilidade", "Engage"] },
-  { class: "Caçador Fantasma", name: "Disparo Fantasma", desc: "100% chance de causar 50% do dano (Destreza) que decai 20% a cada repetição.", cd: 2, mana: 5, dist: 10, type: "ranged", tags: ["Multi-hit", "Execução"] },
-  { class: "Arcanista Supremo", name: "Explosão da Alma", desc: "Libera energia arcana, causando 100% de dano mágico e stuna por 1 turno.", cd: 8, mana: 25, dist: 1, type: "magic", tags: ["Ultimate", "Stun"] },
+  {
+    class: 'Guerreiro',
+    name: 'Impacto Devastador',
+    description: 'Um golpe de cima para baixo que racha o próprio vidro do solo, atordoando inimigos.',
+    cooldown: '8s',
+    mana: '45',
+    range: '1',
+    type: 'Físico / Stun',
+    icon: <ShieldAlert className="w-6 h-6" />,
+    color: 'var(--color-battle-red)'
+  },
+  {
+    class: 'Arqueiro',
+    name: 'Chuva de Vidro',
+    description: 'Dispara uma salva de flechas encantadas que se fragmentam em estilhaços fatais.',
+    cooldown: '12s',
+    mana: '60',
+    range: '5',
+    type: 'Mágico / Dano',
+    icon: <Sparkles className="w-6 h-6" />,
+    color: 'var(--color-moss)'
+  },
+  {
+    class: 'Mago',
+    name: 'Vórtice de Sangue',
+    description: 'Conjura um redemoinho de energia vital que drena a vida dos adversários para curar o conjurador.',
+    cooldown: '15s',
+    mana: '90',
+    range: '4',
+    type: 'Arcano / Dreno',
+    icon: <FlameIcon className="w-6 h-6" />,
+    color: 'var(--color-wine)'
+  }
 ];
-
-const getTypeIcon = (type: string) => {
-  if (type === 'physical') return <SwordIcon className="w-5 h-5" />;
-  if (type === 'magic') return <Zap className="w-5 h-5" />;
-  return <Wind className="w-5 h-5" />;
-};
-
-const SwordIcon = ({ className }: { className?: string }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5" />
-    <line x1="13" y1="19" x2="19" y2="13" />
-    <line x1="16" y1="16" x2="20" y2="20" />
-    <line x1="19" y1="21" x2="21" y2="19" />
-  </svg>
-);
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-24 bg-void-light relative">
-      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')] opacity-30 mix-blend-overlay pointer-events-none" />
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-arcane/10 rounded-full blur-[120px] pointer-events-none" />
-      
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-6xl font-cinzel text-white mb-6 text-shadow-epic">Artes de Combate</h2>
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg">O grimório de habilidades lendárias. Domine o campo de batalha com poderes devastadores e controle tático.</p>
+    <section id="skills" className="py-32 relative bg-[#1a120b] overflow-hidden">
+      {/* Magical Background Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-wine/5 blur-[150px] opacity-20 pointer-events-none" />
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="text-center mb-24">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="title-ornate text-4xl md:text-6xl text-gold uppercase tracking-[0.2em] font-black font-cinzel">
+              Artes de Combate
+            </h2>
+            <p className="font-serif italic text-2xl text-parchment/60 max-w-2xl mx-auto mt-4">
+              "Técnicas ancestrais e feitiços proibidos registrados no Grande Grimório."
+            </p>
+          </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {skills.map((skill, idx) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          {skills.map((skill, index) => (
             <motion.div
-              key={idx}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              key={skill.name}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="relative bg-void border border-wine/40 p-1 group hover:border-gold/50 transition-colors duration-500"
+              transition={{ delay: index * 0.15 }}
+              className="group"
             >
-              <div className="bg-[#110e0d] h-full p-6 relative overflow-hidden">
-                {/* Decorative corners */}
-                <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-gold/30" />
-                <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-gold/30" />
-                <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-gold/30" />
-                <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-gold/30" />
+              {/* Scroll of Arts Appearance */}
+              <div className="parchment-container p-1 border-medieval h-full shadow-[0_15px_40px_rgba(0,0,0,0.6)]">
+                <div className="bg-parchment h-full p-8 flex flex-col items-center text-center relative overflow-hidden">
+                   
+                   {/* Glowing Rune Watermark */}
+                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-9xl text-gold-dark/5 pointer-events-none select-none font-medieval group-hover:scale-125 group-hover:text-gold-dark/10 transition-all duration-1000">
+                      ᚱᚢᚾᛖ
+                   </div>
 
-                <div className="flex justify-between items-start mb-4 relative z-10">
-                  <div>
-                    <span className="text-[10px] text-gold uppercase tracking-widest font-bold bg-gold/10 px-2 py-1 border border-gold/20">{skill.class}</span>
-                    <h4 className="text-xl font-cinzel text-white mt-3">{skill.name}</h4>
-                  </div>
-                  <div className={`w-12 h-12 rounded-sm bg-void border flex items-center justify-center shadow-inner
-                    ${skill.type === 'physical' ? 'border-battle-red/50 text-battle-red shadow-battle-red/20' : 
-                      skill.type === 'magic' ? 'border-arcane/50 text-blue-400 shadow-arcane/20' : 'border-emerald-500/50 text-emerald-400 shadow-emerald-500/20'}`}
-                  >
-                    {getTypeIcon(skill.type)}
-                  </div>
-                </div>
+                   {/* Class Badge */}
+                   <span className="font-cinzel text-xs font-bold text-gold-dark uppercase tracking-widest mb-6 border-b border-gold-dark/30 pb-2">
+                     {skill.class}
+                   </span>
 
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {skill.tags.map(tag => (
-                    <span key={tag} className="text-[10px] uppercase tracking-wider text-gray-400 border border-gray-700 px-2 py-0.5 rounded-full">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+                   {/* Skill Icon with Magical Glow */}
+                   <div className="relative mb-8">
+                      <div className="seal-gold !w-16 !h-16 group-hover:rotate-[360deg] transition-transform duration-1000 flex items-center justify-center">
+                         <div style={{ color: skill.color }}>{skill.icon}</div>
+                      </div>
+                      <div className="absolute inset-0 bg-gold blur-xl opacity-20 group-hover:opacity-40 transition-opacity" />
+                   </div>
 
-                <p className="text-sm text-gray-300 mb-8 h-16 leading-relaxed font-inter">{skill.desc}</p>
+                   <h3 className="font-cinzel text-2xl font-black text-ink mb-4 uppercase tracking-tighter">
+                     {skill.name}
+                   </h3>
 
-                <div className="flex items-center justify-between text-xs bg-void-light border border-white/5 p-3">
-                  <div className="flex items-center gap-1.5 text-gray-300">
-                    <span className="text-gray-500 font-cinzel">CD</span>
-                    <span className="font-bold">{skill.cd}</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 text-blue-400">
-                    <Droplets className="w-3.5 h-3.5" />
-                    <span className="font-bold">{skill.mana}</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 text-arcane-light">
-                    <Hexagon className="w-3.5 h-3.5" />
-                    <span className="font-bold">{skill.dist}</span>
-                  </div>
+                   <p className="text-ink/80 text-xl font-serif italic leading-relaxed mb-8 min-h-[5rem]">
+                     "{skill.description}"
+                   </p>
+
+                   {/* Skill Specs - Styled like Manuscript notes */}
+                   <div className="w-full grid grid-cols-2 gap-4 py-6 border-t border-gold-dark/10 mt-auto">
+                      <div className="flex flex-col">
+                         <span className="font-cinzel text-[10px] text-gold-dark font-bold uppercase tracking-widest">Tempo</span>
+                         <span className="font-medieval text-2xl text-ink">{skill.cooldown}</span>
+                      </div>
+                      <div className="flex flex-col">
+                         <span className="font-cinzel text-[10px] text-gold-dark font-bold uppercase tracking-widest">Mana</span>
+                         <span className="font-medieval text-2xl text-ink">{skill.mana}</span>
+                      </div>
+                   </div>
+
+                   {/* Status / Type Tag */}
+                   <div className="mt-6 flex justify-center">
+                      <span className="px-4 py-2 bg-leather text-parchment font-cinzel text-[10px] font-bold tracking-widest rounded-none border border-gold-dark rotate-1 group-hover:rotate-0 transition-transform">
+                        {skill.type}
+                      </span>
+                   </div>
+
+                   {/* Ink Stains */}
+                   <div className="absolute -top-10 -left-10 w-24 h-24 bg-ink/10 rounded-full blur-xl pointer-events-none" />
                 </div>
               </div>
             </motion.div>
           ))}
+        </div>
+
+        {/* Decorative Elements at bottom of section */}
+        <div className="mt-24 text-center">
+           <button className="btn-gold !px-12">
+              Folhear Grimório Completo
+           </button>
         </div>
       </div>
     </section>
