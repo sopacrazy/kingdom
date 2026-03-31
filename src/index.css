@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-arcane: #4c1d95;
+  --color-arcane-light: #7c3aed;
+  --color-gold: #c5a059;
+  --color-gold-bright: #fcd34d;
+  --color-gold-dark: #785b28;
+  --color-battle-red: #991b1b;
+  --color-battle-dark: #4a0e17;
+  --color-void: #0a0a0f;
+  --color-void-light: #16161e;
+  --color-charcoal: #111111;
+  --color-silver: #94a3b8;
+  
+  --font-cinzel: 'Cinzel', serif;
+  --font-inter: 'Inter', sans-serif;
+}
+
+body {
+  background-color: var(--color-void);
+  color: #e2e8f0;
+  font-family: var(--font-inter);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-cinzel);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-void);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-arcane-dark);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-arcane);
+}
+
+/* Glowing borders */
+.glow-border {
+  position: relative;
+}
+.glow-border::before {
+  content: '';
+  position: absolute;
+  top: -2px; left: -2px; right: -2px; bottom: -2px;
+  background: linear-gradient(45deg, var(--color-arcane), var(--color-gold), var(--color-battle-red));
+  z-index: -1;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.glow-border:hover::before {
+  opacity: 1;
+}
+
+/* Hexagon shape */
+.hex-shape {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+/* Game Logo Text Style */
+.logo-text {
+  background: linear-gradient(to bottom, #fef08a 0%, #c5a059 45%, #785b28 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0px 4px 12px rgba(0,0,0,0.9));
+  -webkit-text-stroke: 1px rgba(20, 10, 10, 0.8);
+}
+
+/* Epic Text Shadow */
+.text-shadow-epic {
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.9), 0 0 20px rgba(197, 160, 89, 0.3);
+}
+
+/* Parchment Texture */
+.bg-parchment {
+  background-color: #1c1612;
+  background-image: url("https://www.transparenttextures.com/patterns/aged-paper.png");
+}
+
+/* Ornate Border */
+.border-ornate {
+  border: 1px solid var(--color-gold-dark);
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.8), 0 0 15px rgba(0,0,0,0.5);
+}
+
+/* Fog Animation */
+@keyframes fog {
+  0% { transform: translateX(-10%) translateY(0) scale(1.2); opacity: 0.3; }
+  50% { transform: translateX(10%) translateY(-5%) scale(1.3); opacity: 0.5; }
+  100% { transform: translateX(-10%) translateY(0) scale(1.2); opacity: 0.3; }
+}
+.animate-fog {
+  animation: fog 20s infinite alternate ease-in-out;
+}
